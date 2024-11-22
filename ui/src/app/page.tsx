@@ -69,8 +69,8 @@ const App: React.FC = () => {
         Stop Connection
       </button>
       <ul>
-        {messages.map((message) => (
-          <li key={message}>{message}</li>
+        {messages.map((message, index) => (
+          <li key={`${index}-${message}`}>{message}</li>
         ))}
       </ul>
     </div>
