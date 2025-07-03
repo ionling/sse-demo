@@ -1,7 +1,8 @@
+name: sse-demo
+
 services:
   ui:
-    image: node:22.11.0-bullseye
-    container_name: ui
+    image: node:24.3-bookworm
     environment:
       - NODE_ENV=development
     working_dir: /react/src
@@ -11,11 +12,10 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - app-network
+      - net
 
   api:
     image: golang:1.23-alpine
-    container_name: api
     working_dir: /go/src
     command: go run main.go
     volumes:
@@ -23,8 +23,8 @@ services:
     ports:
       - 8080:8080
     networks:
-      - app-network
+      - net
 
 networks:
-  app-network:
+  net:
     driver: bridge
